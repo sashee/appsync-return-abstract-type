@@ -1,0 +1,30 @@
+interface User {
+  id: ID!
+}
+
+type AdminUser implements User {
+  id: ID!
+  permissions: [String!]!
+}
+
+type NormalUser implements User {
+  id: ID!
+}
+
+type File {
+	id: ID!
+	filename: String!
+	url: String!
+}
+
+type Document {
+	id: ID!
+	contents: String!
+}
+
+union SearchResult = File | Document
+
+type Query {
+  allUsers: [User!]!
+	search(text: String!): [SearchResult!]!
+}
